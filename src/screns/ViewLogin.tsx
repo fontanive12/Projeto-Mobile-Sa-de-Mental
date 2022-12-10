@@ -1,11 +1,13 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { ActivityIndicator, Alert, Image, KeyboardAvoidingView, Platform, SafeAreaView, ScrollView, StyleSheet, Text, TextInput, View } from 'react-native';
-import base64 from 'base-64'
-
+import base64 from 'base-64';
+import axios from 'axios';
 import * as SecureStore from 'expo-secure-store';
 import LoginScreen from "react-native-login-screen";
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { AppContext } from '../contexts/AppContext';
-
+import config from '../config/config';
+import { login as loginApi} from '../api/api';
 
 export const ViewLogin = ({ navigation }) => {
 
@@ -20,8 +22,6 @@ export const ViewLogin = ({ navigation }) => {
         password: '',
         saveUser: false
     }
-    
-    console.log(fieldUser)
 
     useEffect(() => {
         async function getSecureStore() {
@@ -41,27 +41,24 @@ export const ViewLogin = ({ navigation }) => {
         setTimeout(() => {
 
             async function testLogin() {
-                const res = await fetch('http://177.44.248.42:3000/auth', {
-                    method: 'POST',
-                    headers: {
-                        'Authorization': 'Basic ' +
-                            base64.encode(user + ":" + pass)
-                    }
-                });
-                const json = await res.json()
-                setLoading(false)
+                try {
+                    const AUTH_TOKEN = `Basic ${base64.encode(`${user}:${pass}`)}`
 
+                    loginApi(AUTH_TOKEN)
 
-                if (json.id) {
+                    axios.defaults.headers.common['Authorization'] = AUTH_TOKEN;
                     saveUser(user, pass)
 
                     navigation.reset({
                         index: 0,
                         routes: [{ name: "ViewMenu" }]
                     })
+                } catch (error) {
+                    console.log({error})
+                    Alert.alert('Erro', error.message)
+                } finally { //sempre vai executar
+                    setLoading(false)
 
-                } else {
-                    Alert.alert('Erro', json.message)
                 }
             }
             testLogin();
@@ -77,13 +74,17 @@ export const ViewLogin = ({ navigation }) => {
 
                 <View style={styles.container}>
                     <LoginScreen
-                        logoImageSource={require('../../assets/UserLogin.png')}
-                        style={{ backgroundColor: '#444', height: 900, marginTop: 150 }}
+                        logoImageSource={require('../assets/meditation(2).png')}
+                        logoImageStyle={{width: 110, height: 110, tintColor: 'white'}}
+                        style={{ backgroundColor: '#68baab', justifyContent: 'center', width: '100%' }}
                         onLoginPress={() => login(usuario.username, usuario.password)}
                         onSignupPress={() => { }}
                         onEmailChange={(email) => { usuario.username = email }}
+                        signupText={'Criar conta'}
+                        signupTextStyle={{color: '#fff'}}
                         onPasswordChange={(password) => { usuario.password = password }}
                         disableSocialButtons={(true)}
+                        loginButtonStyle={{backgroundColor: '#078a85'}}
                     />
                 </View >
             </KeyboardAvoidingView>
@@ -97,6 +98,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         backgroundColor: '#444',
-        
+        height: 800,
+        width: '100%',
     }
 })

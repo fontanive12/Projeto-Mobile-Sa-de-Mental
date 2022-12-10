@@ -1,23 +1,46 @@
 //lista de tarefas
-GET http://177.44.248.42:3000/users
+GET http://177.44.248.42:3030/users
 Authorization: Basic anVjYUBqdWNhLmNvbToxMjM0NQ==
 
 ###
-GET http://177.44.248.42:3000/auth
+GET http://177.44.248.42:3000/professionals
+Authorization: Basic anVjYUBqdWNhLmNvbToxMjM0NQ==
+
+
+###
+GET http://177.44.248.42:3000/expertises
 Authorization: Basic anVjYUBqdWNhLmNvbToxMjM0NQ==
 
 ###
 POST http://177.44.248.42:3000/users
-Authorization: Basic anVjYUBqdWNhLmNvbToxMjM0NQ==
+Authorization: Basic Basic anVjYUBqdWNhLmNvbToxMjM0NQ==
 content-type: Application/json
-
 {
-    "name": "Jonas",
+    "name": "Ireneu",
     "genre": "M",
     "age": 33,
-    "email": "jdhein@univates.br",
-    "password": "teste"
+    "phoneNumber": "51 995379345",
+    "email": "ireneu@ireneu.com",
+    "password": "12345",
+    "createdAt": "2022-11-01T23:27:06.744Z",
+    "updatedAt": "2022-11-01T23:27:06.744Z"
 }
+
+###
+POST http://177.44.248.42:3000/categories
+Authorization: Basic Basic anVjYUBqdWNhLmNvbToxMjM0NQ==
+content-type: Application/json
+{
+    "description": "Ansiedade",
+    "createdAt": "2022-11-01T23:27:06.744Z",
+    "updatedAt": "2022-11-01T23:27:06.744Z"
+}
+
+# INSERT INTO users VALUES (1, 'Juca', 'M', 33, '51 995379340', 'juca@juca.com', '12345', '2022-11-01T23:27:06.744Z','2022-11-01T23:27:06.744Z');
+
+# INSERT INTO categories VALUES (1, 'Depressão', '2022-11-01T23:27:06.744Z','2022-11-01T23:27:06.744Z')
+
+# INSERT INTO users VALUES (1, 'Dr. Juca', 'Especialista em curar traumas passados', 'M', '51 995379340', 'drjuca@juca.com', '12345', 1, '2022-11-01T23:27:06.744Z','2022-11-01T23:27:06.744Z');
 
 ###
 PUT http://177.44.248.42:3000/users/19

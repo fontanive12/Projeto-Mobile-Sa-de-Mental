@@ -1,6 +1,6 @@
 import { StyleSheet, TextInput } from 'react-native';
 import { AntDesign } from '@expo/vector-icons';
-import { theme } from '../styles/DefaultTheme';
+import { theme } from '../components/styles/DefaultTheme';
 
 export const CustomInput = ({ keyboardType, onChangeText, placeholder, secureTextEntry, value }) => {
 

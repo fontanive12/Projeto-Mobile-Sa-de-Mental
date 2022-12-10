@@ -18,10 +18,11 @@ const styles = StyleSheet.create({
         height: 60,
         borderRadius: 50,
         position: 'absolute',
-        bottom: 30,
+        bottom: 20,
         right: 0,
         alignItems: 'center',
         justifyContent: 'center',
+        marginRight:15
 
     },
 });

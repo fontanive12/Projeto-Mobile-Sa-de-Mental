@@ -1,15 +1,33 @@
 import { StyleSheet } from "react-native";
 
+export const colors = {
+  red: '#E74C3C',
+  purple: '#8E44AD',
+  gray: '#34495E',
+  blue: '#2F54EB',
+  green: '#4271AE',
+  orange: '#FF851B',
+  yellow: '#FFC107',
+  white: '#FFF',
+  black: '#000',
+  lightGray: '#A9A9A9',
+}
+
 export const theme = StyleSheet.create({
   container: {
     flex: 1,
     // backgroundColor: '#0C1A26',
-    justifyContent: 'center',
-    alignItems: 'center'
+    // justifyContent: 'center',
+    alignItems: 'center',
+    // marginLeft: 15
+  },
+  safeArea: {
+    flex: 1,
+    backgroundColor: '#fff'
   },
   title: {
     fontSize: 32,
-    fontFamily: 'Cambo_400Regular',
+    //fontFamily: 'Inter-Regular.ttf',
     textAlign: 'center',
     marginTop: 20,
     marginBottom: 20
@@ -57,7 +75,7 @@ export const theme = StyleSheet.create({
     width: '100%',
     justifyContent: 'center',
     alignItems: 'center'
-},
+  },
   itemList: {
     width: '100%',
     marginTop: 8,
