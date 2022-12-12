@@ -85,7 +85,7 @@ export const ViewChecklist = () => {
         )
     }
 
-    const handleCheckTask = (id) => {
+    const handleCheckTask = (id: number) => {
 
         const newTaskList = taskList.map(item => {
             if (item.id == id) {
@@ -100,9 +100,10 @@ export const ViewChecklist = () => {
     return (
         <View style={theme.container}>
 
-            <Text style={theme.title}>Tarefa</Text>
+            <Text style={theme.title}>Minhas tarefas diárias</Text>
 
-            <TextInput
+            
+            {/* <TextInput
                 keyboardType='default'
                 placeholder='Digite a tarefa'
                 placeholderTextColor='#bebebe'
@@ -114,7 +115,7 @@ export const ViewChecklist = () => {
             <CustomButton
                 label="Salvar"
                 onPress={() => updateTaskList()}
-            />
+            /> */}
             <View style={styles.list}>
                 {
                     taskList !== null && taskList.length > 0 ?
@@ -127,13 +128,14 @@ export const ViewChecklist = () => {
                                     <Checkbox
                                         value={item.done}
                                         onValueChange={() => handleCheckTask(item.id)}
-                                        color={item.done ? '#fff' : '#fff'}
+                                        color={item.done ? '#078a85' : '#fff'}
+                                        style={styles.checkbox}
                                     />
                                     <Text style={[styles.itemText, { textDecorationLine: item.done ? 'line-through' : 'none' }]}>{item.name}</Text>
-                                    <TouchableOpacity
+                                    {/* <TouchableOpacity
                                         onPress={() => deleteTask(item.id)}>
                                         <Ionicons name="trash-outline" size={24} color="#fff" />
-                                    </TouchableOpacity>
+                                    </TouchableOpacity> */}
                                 </View>
                             )
                         })
@@ -162,12 +164,8 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         padding: 16,
-        backgroundColor: '#122a57',
+        backgroundColor: '#68baab',
         alignItems: 'flex-start',
-    },
-    label: {
-        color: '#fff',
-        fontSize: 20
     },
     input: {
         height: 40,
@@ -177,22 +175,29 @@ const styles = StyleSheet.create({
         color: '#fff',
         fontSize: 16
     },
-
+    checkbox: {
+        color: '#fff',
+        borderColor: '#fff',
+        borderWidth: 1,
+        marginRight: 12,
+    },
     list: {
         flex: 1,
         width: '100%',
-        justifyContent: 'center',
-        alignItems: 'center'
+        justifyContent: 'flex-start',
+        alignItems: 'center',
+        backgroundColor: '#68baab',
+        marginTop: 30,
     },
     itemList: {
         width: '100%',
         marginTop: 8,
         flexDirection: 'row',
         alignItems: 'center',
-        justifyContent: 'space-between'
+        // justifyContent: 'space-between'
     },
     itemText: {
         color: '#fff',
-        fontSize: 24
+        fontSize: 20
     }
 });

@@ -11,26 +11,32 @@ export const colors = {
   white: '#FFF',
   black: '#000',
   lightGray: '#A9A9A9',
+  backgroundColor: '#68baab'
+  
 }
 
 export const theme = StyleSheet.create({
   container: {
     flex: 1,
-    // backgroundColor: '#0C1A26',
-    // justifyContent: 'center',
+    backgroundColor: colors.backgroundColor,
     alignItems: 'center',
-    // marginLeft: 15
+    justifyContent: 'center',
+    padding: 10,
+    width:'100%'
   },
   safeArea: {
     flex: 1,
-    backgroundColor: '#fff'
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'center',
+    // padding: 20
   },
   title: {
     fontSize: 32,
-    //fontFamily: 'Inter-Regular.ttf',
     textAlign: 'center',
-    marginTop: 20,
-    marginBottom: 20
+    marginTop: 40,
+    marginBottom: 20,
+    color: colors.white
   },
   input: {
     width: '80%',
@@ -56,10 +62,10 @@ export const theme = StyleSheet.create({
     textAlign: 'center',
   },
   shadows: {
-    shadowColor: 'yellow',
+    shadowColor: colors.white,
     shadowOffset: {
-      width: 0,
-      height: 3,
+      width: 5,
+      height: 5,
     },
     shadowOpacity: 0.2,
     shadowRadius: 2,
@@ -67,7 +73,6 @@ export const theme = StyleSheet.create({
   },
   label: {
     fontSize: 14,
-    // fontFamily: 'Inter-Light', 
     marginBottom: 12
   },
   list: {
@@ -86,5 +91,29 @@ export const theme = StyleSheet.create({
   itemText: {
     color: '#fff',
     fontSize: 24
-  }
+  },
+  card: {
+    width: '100%',
+    marginTop: 15,
+    borderRadius: 16,
+    padding: 8,
+    height: 55,
+    backgroundColor: '#f6f8ee',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between'
+},
+titleCard: {
+    color: '#000',
+    fontSize: 16,
+},
+subtitleCard: {
+    color: '#555',
+    fontSize: 13,
+},
+cardItem: {
+  flexDirection: 'row',
+  alignItems: 'center',
+  justifyContent: 'flex-start'
+}
 })

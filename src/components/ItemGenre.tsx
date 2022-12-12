@@ -7,9 +7,9 @@ import { FontAwesome5 } from '@expo/vector-icons';
 const ItemGenre = ({user, setUser, icon, genre}) => {
     return (
         <TouchableOpacity
-            style={[styles.button, { borderColor: user.genre == genre ? '#9400d3' : '#555' }]}
+            style={[styles.button, { borderColor: user.genre == genre ? '#078a85' : '#555' }]}
             onPress={() => setUser({ ...user, genre: genre })}>
-            <FontAwesome5 name={icon} size={32} color={user.genre == genre ? '#9400d3' : '#555'} />
+            <FontAwesome5 name={icon} size={32} color={user.genre == genre ? '#078a85' : '#555'} />
         </TouchableOpacity>
     );
 }

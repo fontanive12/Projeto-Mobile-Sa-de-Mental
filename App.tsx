@@ -15,6 +15,9 @@ import { ViewInformation } from './src/screns/ViewInformation';
 import { ViewProfessional } from './src/screns/ViewProfessional';
 import { ViewUsers } from './src/screns/ViewUsers';
 import { ViewQuiz } from './src/screns/ViewQuiz';
+import { ViewExpertises } from './src/screns/ViewExpertises';
+import { ViewMeditation } from './src/screns/ViewMeditation';
+
 import { AppContext, AppProvider, IAppContext } from './src/contexts/AppContext'
 import axios from 'axios';
 import config from './src/config/config';
@@ -49,6 +52,9 @@ export default function App() {
               <Stack.Screen name="ViewProfessional" component={ViewProfessional} />
               <Stack.Screen name="ViewUsers" component={ViewUsers} />
               <Stack.Screen name="ViewQuiz" component={ViewQuiz} />
+              <Stack.Screen name="ViewExpertises" component={ViewExpertises} />
+              <Stack.Screen name="ViewMeditation" component={ViewMeditation} />
+
             </Stack.Navigator>
           </NavigationContainer>
 

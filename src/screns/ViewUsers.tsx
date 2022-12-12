@@ -16,17 +16,15 @@ import {
 } from 'react-native';
 const base64 = require('base-64');
 import * as SecureStore from 'expo-secure-store';
-import { AntDesign } from '@expo/vector-icons';
+import { AntDesign, Ionicons } from '@expo/vector-icons';
 import { theme } from '../components/styles/DefaultTheme';
 import { AppContext } from '../contexts/AppContext';
 import { FontAwesome5 } from '@expo/vector-icons';
-// import SkeletonPlaceholder from 'react-native-skeleton-placeholder';
+import LottieView from 'lottie-react-native';
 import { CustomButtonSmall } from '../components/CustomButtonSmall';
 import { Modalize } from 'react-native-modalize';
-// import ItemUser from '../components/ItemUser';
-// import ItemSex from '../components/ItemSex';
 import { CustomButton } from '../components/CustomButton';
-import ItemUser from '../components/ItemUser';
+import {ItemUser} from '../components/ItemUser';
 import axios from 'axios';
 import ItemGenre from '../components/ItemGenre';
 
@@ -117,16 +115,6 @@ export const ViewUsers = ({ navigation }) => {
 
             listUsers();
 
-            // if (response.status == 200) {
-
-            //     modalRef.current?.close();
-
-            //     listUsers();
-
-            // } else {
-            //     Alert.alert('Ops', 'Erro ao salvar usuário');
-            // }
-
         } catch (error) {
             console.log('error - ', error)
             Alert.alert('Opsss', error.message);
@@ -161,19 +149,42 @@ export const ViewUsers = ({ navigation }) => {
 
     }
 
+
+    const deleteUser = async (id: number) => { //para excluir o id, o filter vai filtar o id inexistente e excluir
+      try {
+        // setLoading(true);
+
+       Alert.alert(
+                'Atenção', 'Deseja mesmo excluir o usuário?', [
+                {
+            
+                    text: "Sim",
+                    onPress: async () => {const response = await axios.delete(`/users/${id}`);
+                    modalRef.current?.close();
+                    listUsers()
+                }
+            },
+            {
+                text: "Não",
+                onPress: () => {
+                    modalRef.current?.close();
+                    listUsers()
+                }
+            }
+        ]
+        )
+      } catch (error) {
+                console.log(error)
+       }
+    }
+
     return (
         <SafeAreaView style={theme.safeArea}>
             <View style={theme.container}>
 
-                {/* <SkeletonPlaceholder
-                    speed={600}>
-                    <SkeletonPlaceholder.Item
-                        width={200}
-                        height={45} />
-                </SkeletonPlaceholder> */}
-
                 <Text style={theme.title}>Usuários</Text>
                 <FlatList
+                    style={{padding: 2}}
                     data={users}
                     onRefresh={() => listUsers()}
                     refreshing={loading}
@@ -184,11 +195,9 @@ export const ViewUsers = ({ navigation }) => {
                 />
 
                 <CustomButtonSmall
-                    icon="plus"
-                    color="#333"
+                    color="#078a85"
                     onPress={() => newUser()}
                 />
-
 
                 <Modalize
                     ref={modalRef}
@@ -241,7 +250,7 @@ export const ViewUsers = ({ navigation }) => {
                                 style={styles.modalInput}
                                 placeholder="Senha" />
 
-                            <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+                            <View style={{ flexDirection: 'row', justifyContent: 'space-between', width: '100%' }}>
                                 <View style={{ flex: 1 }}>
                                     <Text style={theme.label}>Idade</Text>
                                     <TextInput
@@ -252,7 +261,7 @@ export const ViewUsers = ({ navigation }) => {
                                 </View>
 
                                 <View style={{ flex: 1 }}>
-                                    <Text style={theme.label}>Sexo</Text>
+                                    <Text style={theme.label}>Gênero</Text>
                                     <ScrollView horizontal={true}>
                                         <ItemGenre
                                             setUser={setUser}
@@ -268,13 +277,17 @@ export const ViewUsers = ({ navigation }) => {
                                 </View>
                             </View>
 
-                            <CustomButton
-                                label="Salvar"
-                                onPress={(saveUser)}
-                            // textColor="#fff"
-                            // width="100%"
-                            // backgroundColor="#9400d3" />
-                            />
+                            <View
+                                style={styles.bottomLine}>
+                                <CustomButton
+                                    label="Salvar"
+                                    onPress={(saveUser)}/>
+
+                                <TouchableOpacity
+                                    onPress={() => deleteUser(user.id)}>
+                                        <Ionicons name="trash-outline" size={38} color="#078a85" />
+                                </TouchableOpacity>
+                            </View>
                         </View>
                     </KeyboardAvoidingView>
                 </Modalize>
@@ -298,6 +311,12 @@ const styles = StyleSheet.create({
         width: '100%',
         marginBottom: 16,
         paddingLeft: 8,
-        // fontFamily: "Inter-Regular"
     },
+    bottomLine: {
+        flexDirection: 'row',
+        justifyContent:'space-between',
+        alignItems: 'center',
+        padding: 16,
+        marginTop: 20,
+    }
 });

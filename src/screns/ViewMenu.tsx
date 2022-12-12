@@ -77,7 +77,7 @@ export const ViewMenu = (props) => {
                         </TouchableOpacity>
 
                         <TouchableOpacity
-                            style={[styles.card, theme.shadows]}
+                            style={[styles.card]}
                             onPress={() => props.navigation.navigate("ViewInformation")}>
                             <View style={styles.cardItem}>
                                 <Ionicons name="ios-book-outline"
@@ -88,13 +88,46 @@ export const ViewMenu = (props) => {
                         </TouchableOpacity>
 
                         <TouchableOpacity
-                            style={[styles.card, theme.shadows]}
+                            style={[styles.card]}
                             onPress={() => props.navigation.navigate("ViewChecklist")}>
                             <View style={styles.cardItem}>
                                 <Octicons name="checklist"
                                 style={{ marginRight: 25, marginLeft: 5 }}
                                 size={50} color="#444" />
                                 <Text style={theme.label}>Checklist Diário</Text>
+                            </View>
+                        </TouchableOpacity>
+
+                        <TouchableOpacity
+                            style={[styles.card]}
+                            onPress={() => props.navigation.navigate("ViewExpertises")}>
+                            <View style={styles.cardItem}>
+                                <Octicons name="checklist"
+                                style={{ marginRight: 25, marginLeft: 5 }}
+                                size={50} color="#444" />
+                                <Text style={theme.label}>Lista de Especializações</Text>
+                            </View>
+                        </TouchableOpacity>
+
+                        {/* <TouchableOpacity
+                            style={[styles.card]}
+                            onPress={() => props.navigation.navigate("ViewProfessional")}>
+                            <View style={styles.cardItem}>
+                                <Octicons name="checklist"
+                                style={{ marginRight: 25, marginLeft: 5 }}
+                                size={50} color="#444" />
+                                <Text style={theme.label}>Lista Profissionais</Text>
+                            </View>
+                        </TouchableOpacity> */}
+
+                        <TouchableOpacity
+                            style={[styles.card]}
+                            onPress={() => props.navigation.navigate("ViewMeditation")}>
+                            <View style={styles.cardItem}>
+                                <Octicons name="checklist"
+                                style={{ marginRight: 25, marginLeft: 5 }}
+                                size={50} color="#444" />
+                                <Text style={theme.label}>ViewMeditation </Text>
                             </View>
                         </TouchableOpacity>
                     </View>

@@ -1,13 +1,13 @@
 import { StyleSheet, TouchableOpacity } from 'react-native';
 import { AntDesign } from '@expo/vector-icons';
 
-export const CustomButtonSmall = ({ icon, color, onPress }) => {
+export const CustomButtonSmall = ({ color, onPress }) => {
 
     return (
         <TouchableOpacity
             onPress={onPress}
             style={[styles.button, { backgroundColor: color ? color : 'green' }]}>
-            <AntDesign name="plus" size={30} color="black" />
+            <AntDesign name="plus" size={30} color='white' />
         </TouchableOpacity>
     )
 }
