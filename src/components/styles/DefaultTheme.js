@@ -20,15 +20,14 @@ export const theme = StyleSheet.create({
     flex: 1,
     backgroundColor: colors.backgroundColor,
     alignItems: 'center',
-    justifyContent: 'center',
     padding: 10,
     width:'100%'
   },
   safeArea: {
     flex: 1,
     backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    // alignItems: 'center',
+    // justifyContent: 'center',
     // padding: 20
   },
   title: {

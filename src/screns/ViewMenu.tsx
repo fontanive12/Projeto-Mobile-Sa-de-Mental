@@ -1,12 +1,12 @@
 import React from 'react';
 import { Dimensions, SafeAreaView, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import { CustomButtonMenu } from '../components/CustonButtonMenu';
+import { CustomButtonMenu } from '../components/CustomButtonMenu';
 import { Carousel } from 'react-responsive-carousel';
 import * as Animatable from 'react-native-animatable';
 import { theme } from '../components/styles/DefaultTheme';
 import { Header } from '../components/Header';
 import { Avatar } from '../components/Avatar';
-import { Ionicons, MaterialIcons, Octicons } from '@expo/vector-icons';
+import { AntDesign, Ionicons, MaterialCommunityIcons, MaterialIcons, Octicons } from '@expo/vector-icons';
 
 const { width, height } = Dimensions.get('window');
 
@@ -78,6 +78,16 @@ export const ViewMenu = (props) => {
 
                         <TouchableOpacity
                             style={[styles.card]}
+                            onPress={() => props.navigation.navigate("ViewExpertises")}>
+                            <View style={styles.cardItem}>
+                            <AntDesign name="search1" 
+                                style={{ marginRight: 25, marginLeft: 5 }}
+                                size={50} color="#444" />
+                                <Text style={theme.label}>Lista de Especializações</Text>
+                            </View>
+                        </TouchableOpacity>
+                        <TouchableOpacity
+                            style={[styles.card]}
                             onPress={() => props.navigation.navigate("ViewInformation")}>
                             <View style={styles.cardItem}>
                                 <Ionicons name="ios-book-outline"
@@ -98,16 +108,7 @@ export const ViewMenu = (props) => {
                             </View>
                         </TouchableOpacity>
 
-                        <TouchableOpacity
-                            style={[styles.card]}
-                            onPress={() => props.navigation.navigate("ViewExpertises")}>
-                            <View style={styles.cardItem}>
-                                <Octicons name="checklist"
-                                style={{ marginRight: 25, marginLeft: 5 }}
-                                size={50} color="#444" />
-                                <Text style={theme.label}>Lista de Especializações</Text>
-                            </View>
-                        </TouchableOpacity>
+                        
 
                         {/* <TouchableOpacity
                             style={[styles.card]}
@@ -124,7 +125,7 @@ export const ViewMenu = (props) => {
                             style={[styles.card]}
                             onPress={() => props.navigation.navigate("ViewMeditation")}>
                             <View style={styles.cardItem}>
-                                <Octicons name="checklist"
+                            <MaterialCommunityIcons name="meditation"
                                 style={{ marginRight: 25, marginLeft: 5 }}
                                 size={50} color="#444" />
                                 <Text style={theme.label}>ViewMeditation </Text>

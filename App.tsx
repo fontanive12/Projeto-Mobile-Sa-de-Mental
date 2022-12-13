@@ -17,12 +17,16 @@ import { ViewUsers } from './src/screns/ViewUsers';
 import { ViewQuiz } from './src/screns/ViewQuiz';
 import { ViewExpertises } from './src/screns/ViewExpertises';
 import { ViewMeditation } from './src/screns/ViewMeditation';
+import { ViewAnsiedade } from './src/screns/ViewsInformation/ViewAnsiedade';
+import { ViewAtividades } from './src/screns/ViewsInformation/ViewAtividades';
+
 
 import { AppContext, AppProvider, IAppContext } from './src/contexts/AppContext'
 import axios from 'axios';
 import config from './src/config/config';
 import { NativeModules } from 'react-native';
-
+import { LogBox } from 'react-native';
+LogBox.ignoreAllLogs();
 // NativeModules.DevSettings.setIsDebuggingRemotely(false);
 const Stack = createNativeStackNavigator(); //criando rotas
 
@@ -54,6 +58,9 @@ export default function App() {
               <Stack.Screen name="ViewQuiz" component={ViewQuiz} />
               <Stack.Screen name="ViewExpertises" component={ViewExpertises} />
               <Stack.Screen name="ViewMeditation" component={ViewMeditation} />
+              <Stack.Screen name="ViewAnsiedade" component={ViewAnsiedade} />
+              <Stack.Screen name="ViewAtividades" component={ViewAtividades} />
+
 
             </Stack.Navigator>
           </NavigationContainer>

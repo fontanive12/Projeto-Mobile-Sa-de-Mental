@@ -104,6 +104,7 @@ export const ViewUsers = ({ navigation }) => {
             } else {
                 //inclusão
                 response = await axios.post(`/users`, payload);
+                response = await axios.get(`/email/${user.email}`);
             }
 
             // const response = await axios({
@@ -112,7 +113,6 @@ export const ViewUsers = ({ navigation }) => {
             //     data: payload
 
             modalRef.current?.close();
-
             listUsers();
 
         } catch (error) {
@@ -202,7 +202,10 @@ export const ViewUsers = ({ navigation }) => {
                 <Modalize
                     ref={modalRef}
                     snapPoint={800}
-                    modalHeight={height * 0.8}>
+                    // modalHeight={height * 0.8}
+                    adjustToContentHeight={true}
+                    // adjustToContentHeight={true}>
+>
                     <KeyboardAvoidingView
                         behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
                         style={{ flex: 1 }}>
