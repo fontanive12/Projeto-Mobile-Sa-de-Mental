@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState, useRef } from 'react';
 import {
     Alert,
+    Button,
     Dimensions,
     FlatList,
     KeyboardAvoidingView,
@@ -20,9 +21,11 @@ import { AppContext } from '../contexts/AppContext';
 import { CustomButtonSmall } from '../components/CustomButtonSmall';
 import { Modalize } from 'react-native-modalize';
 import { CustomButton } from '../components/CustomButton';
-import {ItemExpertise} from '../components/ItemExpertise';
+import { ItemExpertise } from '../components/ItemExpertise';
 import axios from 'axios';
 import { Ionicons } from '@expo/vector-icons';
+import { Toast } from "react-native-toast-message/lib/src/Toast";
+import { messages } from '../components/utils/messages';
 
 const { width, height } = Dimensions.get('window');
 
@@ -78,6 +81,8 @@ export const ViewExpertises = ({ navigation }) => {
             if (expertise.id > 0) {
                 //alteraração
                 response = await axios.put(`/expertises/${expertise.id}`, payload);
+                messages.success('Sucesso', 'especialização alterada com sucesso!');
+
             } else {
                 //inclusão
                 response = await axios.post(`/expertises`, payload);
@@ -107,6 +112,7 @@ export const ViewExpertises = ({ navigation }) => {
             }
 
             setLoading(false);
+
         } catch (error) {
             console.log({ error })
         }
@@ -114,34 +120,35 @@ export const ViewExpertises = ({ navigation }) => {
 
     const deleteExpertise = async (id: number) => { //para excluir o id, o filter vai filtar o id inexistente e excluir
         try {
-         Alert.alert(
-                  'Atenção', 'Deseja mesmo excluir a expecialização?', [
-                  {
-                      text: "Sim",
-                      onPress: async () => {const response = await axios.delete(`/expertises/${id}`);
-                      modalRef.current?.close();
-                      listExpertise()
-                  }
-              },
-              {
-                  text: "Não",
-                  onPress: () => {
-                      modalRef.current?.close();
-                      listExpertise()
-                  }
-              }
-          ]
-          )
+            Alert.alert(
+                'Atenção', 'Deseja mesmo excluir a expecialização?', [
+                {
+                    text: "Sim",
+                    onPress: async () => {
+                        const response = await axios.delete(`/expertises/${id}`);
+                        modalRef.current?.close();
+                        listExpertise()
+                    }
+                },
+                {
+                    text: "Não",
+                    onPress: () => {
+                        modalRef.current?.close();
+                        listExpertise()
+                    }
+                }
+            ]
+            )
         } catch (error) {
-                  console.log(error)
-         }
-      }
+            console.log(error)
+        }
+    }
 
     return (
         <SafeAreaView style={theme.safeArea}>
             <View style={theme.container}>
 
-                <Text style={theme.title}>Expecializações</Text>
+                <Text style={theme.title}>Especializações</Text>
                 <FlatList
                     data={expertises}
                     onRefresh={() => listExpertise()}
@@ -152,11 +159,12 @@ export const ViewExpertises = ({ navigation }) => {
                     )}
                 />
 
+
+
                 <CustomButtonSmall
                     color="#078a85"
                     onPress={() => newExpertise()}
                 />
-
 
                 <Modalize
                     ref={modalRef}
@@ -186,18 +194,20 @@ export const ViewExpertises = ({ navigation }) => {
                             style={styles.bottomLine}>
                             <CustomButton
                                 label="Salvar"
-                                onPress={(saveExpertise)}/>
+                                onPress={(saveExpertise)}
+                            />
+
 
                             <TouchableOpacity
                                 onPress={() => deleteExpertise(expertise.id)}>
-                                    <Ionicons name="trash-outline" size={38} color="#078a85" />
+                                <Ionicons name="trash-outline" size={38} color="#078a85" />
                             </TouchableOpacity>
                         </View>
-                </KeyboardAvoidingView>
-            </Modalize>
+                    </KeyboardAvoidingView>
+                </Modalize>
 
 
-        </View>
+            </View>
         </SafeAreaView >
     );
 }
@@ -218,7 +228,7 @@ const styles = StyleSheet.create({
     },
     bottomLine: {
         flexDirection: 'row',
-        justifyContent:'space-between',
+        justifyContent: 'space-between',
         alignItems: 'center',
         padding: 16,
         marginTop: 20,

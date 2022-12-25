@@ -6,9 +6,9 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 import { CustomButtonMeditation } from '../components/CustomButtonMeditation';
 
 export const ViewMeditation = () => {
-  const [sound, setSound] = React.useState();
+  const [sound, setSound] = React.useState<Audio.Sound>();
 
-  async function playSound(sound20) {
+  async function playSound() {
     console.log('Loading Sound');
     const { sound } = await Audio.Sound.createAsync(require('../assets/audios/EleveSuaVibracao.mp3')
     );
@@ -16,7 +16,7 @@ export const ViewMeditation = () => {
     await sound.playAsync();
   }
 
-  async function playSound2(sound20) {
+  async function playSound2() {
     console.log('Loading Sound');
     const { sound } = await Audio.Sound.createAsync(require('../assets/audios/AmeSe.mp3')
     );
@@ -24,7 +24,7 @@ export const ViewMeditation = () => {
     await sound.playAsync();
   }
 
-  async function playSound3(sound20) {
+  async function playSound3() {
     console.log('Loading Sound');
     const { sound } = await Audio.Sound.createAsync(require('../assets/audios/Calma.mp3')
     );
@@ -32,7 +32,7 @@ export const ViewMeditation = () => {
     await sound.playAsync();
   }
 
-  async function playSound4(sound20) {
+  async function playSound4() {
     console.log('Loading Sound');
     const { sound } = await Audio.Sound.createAsync(require('../assets/audios/SomDeChuva.mp3')
     );
@@ -40,7 +40,7 @@ export const ViewMeditation = () => {
     await sound.playAsync();
   }
 
-  async function playSound5(sound20) {
+  async function playSound5() {
     console.log('Loading Sound');
     const { sound } = await Audio.Sound.createAsync(require('../assets/audios/SonsNatureza.mp3')
     );

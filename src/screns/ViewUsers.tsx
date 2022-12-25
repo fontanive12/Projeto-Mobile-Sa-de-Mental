@@ -27,6 +27,8 @@ import { CustomButton } from '../components/CustomButton';
 import {ItemUser} from '../components/ItemUser';
 import axios from 'axios';
 import ItemGenre from '../components/ItemGenre';
+import { Header } from '../components/Header';
+import { messages } from '../components/utils/messages';
 
 const { width, height } = Dimensions.get('window');
 
@@ -180,7 +182,16 @@ export const ViewUsers = ({ navigation }) => {
 
     return (
         <SafeAreaView style={theme.safeArea}>
+            {/* <Header
+                navigation={navigation}
+                label={'Lista de usuários'}
+                // leftItem={}
+                logout={false}
+            /> */}
             <View style={theme.container}>
+            {/* <CustomButton 
+            label={'oi'} */}
+            {/* // onPress={() => {messages.info}}/> */}
 
                 <Text style={theme.title}>Usuários</Text>
                 <FlatList
@@ -284,7 +295,8 @@ export const ViewUsers = ({ navigation }) => {
                                 style={styles.bottomLine}>
                                 <CustomButton
                                     label="Salvar"
-                                    onPress={(saveUser)}/>
+                                    onPress={(saveUser)}
+                                    />
 
                                 <TouchableOpacity
                                     onPress={() => deleteUser(user.id)}>

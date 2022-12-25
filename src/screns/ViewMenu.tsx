@@ -34,28 +34,13 @@ export const ViewMenu = (props) => {
     return (
         <SafeAreaView
             style={styles.container}>
-            {/* <View>
-                <ScrollView
-                    horizontal
-                    pagingEnabled
-                    showsHorizontalScrollIndicator={true}
-                >
 
-                </ScrollView>
-
-            </View> */}
-
-
-            {/* <Header nav={props.navigation}
-            label='Texto' 
-            headerLeft={<>  </>}
-            headerRight={<> </>}
-            /> */}
-
-            {/* <Header nav={props.navigation}
-                label="Menu"
-                avatar={<Avatar />}
-                logout={false} /> */}
+            <Header
+                navigation={props.navigation}
+                label={'Materiais de Leitura'}
+                leftItem={<Avatar />}
+                logout={true}
+            />
 
             <ScrollView
                 showsVerticalScrollIndicator={false}>
@@ -80,9 +65,9 @@ export const ViewMenu = (props) => {
                             style={[styles.card]}
                             onPress={() => props.navigation.navigate("ViewExpertises")}>
                             <View style={styles.cardItem}>
-                            <AntDesign name="search1" 
-                                style={{ marginRight: 25, marginLeft: 5 }}
-                                size={50} color="#444" />
+                                <AntDesign name="search1"
+                                    style={{ marginRight: 25, marginLeft: 5 }}
+                                    size={50} color="#444" />
                                 <Text style={theme.label}>Lista de Especializações</Text>
                             </View>
                         </TouchableOpacity>
@@ -102,33 +87,31 @@ export const ViewMenu = (props) => {
                             onPress={() => props.navigation.navigate("ViewChecklist")}>
                             <View style={styles.cardItem}>
                                 <Octicons name="checklist"
-                                style={{ marginRight: 25, marginLeft: 5 }}
-                                size={50} color="#444" />
+                                    style={{ marginRight: 25, marginLeft: 5 }}
+                                    size={50} color="#444" />
                                 <Text style={theme.label}>Checklist Diário</Text>
                             </View>
                         </TouchableOpacity>
-
-                        
-
-                        {/* <TouchableOpacity
-                            style={[styles.card]}
-                            onPress={() => props.navigation.navigate("ViewProfessional")}>
-                            <View style={styles.cardItem}>
-                                <Octicons name="checklist"
-                                style={{ marginRight: 25, marginLeft: 5 }}
-                                size={50} color="#444" />
-                                <Text style={theme.label}>Lista Profissionais</Text>
-                            </View>
-                        </TouchableOpacity> */}
 
                         <TouchableOpacity
                             style={[styles.card]}
                             onPress={() => props.navigation.navigate("ViewMeditation")}>
                             <View style={styles.cardItem}>
-                            <MaterialCommunityIcons name="meditation"
-                                style={{ marginRight: 25, marginLeft: 5 }}
-                                size={50} color="#444" />
-                                <Text style={theme.label}>ViewMeditation </Text>
+                                <MaterialCommunityIcons name="meditation"
+                                    style={{ marginRight: 25, marginLeft: 5 }}
+                                    size={50} color="#444" />
+                                <Text style={theme.label}>Meditações </Text>
+                            </View>
+                        </TouchableOpacity>
+
+                        <TouchableOpacity
+                            style={[styles.card]}
+                            onPress={() => props.navigation.navigate("ViewCharts")}>
+                            <View style={styles.cardItem}>
+                                <Octicons name="checklist"
+                                    style={{ marginRight: 25, marginLeft: 5 }}
+                                    size={50} color="#444" />
+                                <Text style={theme.label}>Checklist Diário</Text>
                             </View>
                         </TouchableOpacity>
                     </View>

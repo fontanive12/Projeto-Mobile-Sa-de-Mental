@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import { ActivityIndicator, Alert, Image, KeyboardAvoidingView, Platform, SafeAreaView, ScrollView, StyleSheet, Text, TextInput, View } from 'react-native';
 import base64 from 'base-64';
 import axios from 'axios';
@@ -7,9 +7,20 @@ import LoginScreen from "react-native-login-screen";
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { AppContext } from '../contexts/AppContext';
 import config from '../config/config';
-import { login as loginApi} from '../api/api';
+import { login as loginApi } from '../api/api';
+import * as Notifications from 'expo-notifications';
+
+Notifications.setNotificationHandler({
+    handleNotification: async () => ({
+        shouldShowAlert: true,
+        shouldPlaySound: false,
+        shouldSetBadge: true,
+    }),
+});
+
 
 export const ViewLogin = ({ navigation }) => {
+
 
     const fieldUser = "myapp_usuario";
     const fieldPassword = "myapp_senha";
@@ -35,6 +46,7 @@ export const ViewLogin = ({ navigation }) => {
         getSecureStore();
     }, [])//primeira renderização do componente
 
+
     function login(user: string, pass: string) {
         setLoading(true)
 
@@ -54,7 +66,7 @@ export const ViewLogin = ({ navigation }) => {
                         routes: [{ name: "ViewMenu" }]
                     })
                 } catch (error) {
-                    console.log({error})
+                    console.log({ error })
                     Alert.alert('Erro', error.message)
                 } finally { //sempre vai executar
                     setLoading(false)
@@ -75,16 +87,16 @@ export const ViewLogin = ({ navigation }) => {
                 <View style={styles.container}>
                     <LoginScreen
                         logoImageSource={require('../assets/meditation(2).png')}
-                        logoImageStyle={{width: 110, height: 110, tintColor: 'white'}}
+                        logoImageStyle={{ width: 110, height: 110, tintColor: 'white' }}
                         style={{ backgroundColor: '#68baab', justifyContent: 'center', width: '100%' }}
                         onLoginPress={() => login(usuario.username, usuario.password)}
                         onSignupPress={() => { }}
                         onEmailChange={(email) => { usuario.username = email }}
                         signupText={'Criar conta'}
-                        signupTextStyle={{color: '#fff'}}
+                        signupTextStyle={{ color: '#fff' }}
                         onPasswordChange={(password) => { usuario.password = password }}
                         disableSocialButtons={(true)}
-                        loginButtonStyle={{backgroundColor: '#078a85'}}
+                        loginButtonStyle={{ backgroundColor: '#078a85' }}
                     />
                 </View >
             </KeyboardAvoidingView>

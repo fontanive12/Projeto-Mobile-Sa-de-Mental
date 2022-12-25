@@ -29,6 +29,7 @@ import { ViewExpertises, Expertise } from './ViewExpertises';
 const { width, height } = Dimensions.get('window');
 
 export const ViewProfessional = ({ navigation }) => {
+ 
 
     const initialProfessional = {
         id: 0,
